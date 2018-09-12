@@ -8,6 +8,7 @@ class App extends PureComponent {
   constructor() {
     super();
     this.toggleSnackbar.bind(this);
+    this.handleRequestClose.bind(this);
   }
   state = {
     open: false
@@ -16,6 +17,13 @@ class App extends PureComponent {
   toggleSnackbar = () => {
     this.setState({
       open: !this.state.open
+    });
+  }
+
+  handleRequestClose = () => {
+    console.log('close');
+    this.setState({
+      open: true
     });
   }
 
@@ -37,6 +45,7 @@ class App extends PureComponent {
               'aria-describedby': 'message-id',
             }}
             message={<span id="message-id">I love snacks</span>}
+            onExiting={this.handleRequestClose}
           />
         </Paper>
       </div>
